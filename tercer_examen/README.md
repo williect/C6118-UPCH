@@ -7,7 +7,10 @@ Ricardo Oliveros-Ramos
 
 ## Instrucciones
 
-Este repositorio debe ser clonado (_fork_) en su repositorio personal. El examen consiste en escribir un reporte modificando el archivo "examen.Rmd". Todos los archivos que cree durante la resolución del examen deben ser incluidos en su versión del repositorio. Los datos que puede utilizar se encuentran en la carpeta "datos". Cualquier otra fuente de datos que use debe ser incluida en la misma carpeta.
+Este repositorio debe ser clonado (_fork_) en su repositorio personal. El examen consiste en escribir un reporte modificando el archivo "examen.Rmd". Todos los archivos que cree durante la resolución del examen deben ser incluidos en su versión del repositorio. Los datos que puede utilizar se encuentran en la carpeta `datos`. 
+
+Las preguntas científicas que responda en su informe son de libre elección. Puede realizar cualquier tipo de análisis y comparación a nivel espacial, temporal o ambos. No es necesario usar todos los datos y puede utilizar otros datos adicionales si lo considera apropiado. Cualquier otra fuente de datos que use debe ser incluida en la carpeta `datos`.
+
 
 Esta permitido compartir código entre los participantes del curso la medida que se usen las herramientas de _git_ para tal propósito. Hacerlo de esta forma será evaluado positivamente para todos los involucrados. Cualquier otra forma de compartir código no está permitida y influirá negativamente en la evaluación.
 
