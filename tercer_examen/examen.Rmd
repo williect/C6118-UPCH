@@ -1,0 +1,16 @@
+---
+title: "Análisis de las condiciones del océano frente a Perú durante mi primer año de vida"
+author: "Su nombre"
+output: html_document
+---
+
+## Introducción
+
+## Materiales y métodos
+
+## Resultados y discusión
+
+## Conclusiones
+
+## Referencias
+
