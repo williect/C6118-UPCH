@@ -1,6 +1,6 @@
 ---
-title: "Análisis de las condiciones del océano frente a Perú durante mi primer año de vida"
-author: "Su nombre"
+title: "Análisis de las condiciones del océano frente a Perú durante el año de 1988"
+author: "Cesar Williams Cueto Torres"
 output: html_document
 ---
 
