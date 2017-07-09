@@ -6,9 +6,60 @@ output: html_document
 
 ## Introducción
 
+
 ## Materiales y métodos
 
+
 ## Resultados y discusión
+las gráficas - comparacion en meses calidos y frios para 1988
+
+```{r include=FALSE}
+library(ncdf4)
+library(fields)
+library(kali)
+```
+
+```{r}
+nct = nc_open("datos/sst.nc4")
+sst = ncvar_get(nct, "to")
+lat = ncvar_get(nct, "latitude")
+lon = ncvar_get(nct, "longitude") - 360
+time = ncvar_get(nct, "time")
+ncsphy = nc_open("datos/sphy.nc4")
+ncph = nc_open("datos/ph.nc4")
+nclphy = nc_open("datos/lphy.nc4")
+lphy = ncvar_get(nclphy, "intpp")
+
+```
+
+```{r}
+#para obetner anomalias, necesitamos la media del año muestreado y restarle nuestros valores, en este caso epoca fria y calida en el año
+sst_prom = apply(sst[,,348:360], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+sst_JFM = apply(sst[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+anom_cal = sst_prom - sst_JFM
+image.map(lon, lat, anom_cal)# tenemos la anoamalia para los meses "calidos" de ese año
+```
+
+
+```{r}
+sst_JFM = apply(sst[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #calido
+image.map(lon, lat, sst_JFM)
+```
+
+```{r}
+sst_jas = apply(sst[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #frio
+image.map(lon, lat, sst_jas)
+```
+
+
+```{r}
+sst_prom = apply(sst[,,348:360], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+sst_jas = apply(sst[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+anom_frio = sst_prom - sst_jas
+image.map(lon, lat, anom_frio) # tenemos la anoamalia para los meses "frios" de ese año
+```
+
+
 
 ## Conclusiones
 
