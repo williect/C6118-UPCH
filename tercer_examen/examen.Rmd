@@ -1,14 +1,24 @@
 ---
-title: "Análisis de las condiciones del océano frente a Perú durante el año de 1988"
+title: "Análisis del fitoplancton frente a Perú durante el año de 1988 (aun por editar)"
 author: "Cesar Williams Cueto Torres"
 output: html_document
 ---
 
 ## Introducción
 
+Las áreas de surgencias vienen dados procesos físicos y biológicos, como resultado positivo de esta actividad, se desarrolla una producción primaria alta, que da presencia a una cadena alimentaria corta y una eficiente transferencia de energía (Vinogradov & Shushkina, 1978).
+Los vientos alisios se desarrollan durante todo el año, pero tiene mayor intensidad durante el invierno donde favorece el transporte en superficie de masas de agua y con esto una surgencia de aguas frías con alto valor de nutrientes (Zuta / Guillen, 1970).
+
+La composición y concentración de fitoplancton dependen de las condiciones ambientales y de las masas de agua (Rojas de Mendiola et al., 1985; Ochoa et al., 1985), las concentraciones medias de fitoplancton son mayores en primavera y verano, por tener condiciones favorables de intensidad luminosa y una estratificación en la columna de agua, y menor en invierno donde a pesar de tener intensificado el transporte de aguas ricas en nutrientes hacia superficie, las condiciones de luz y la estratificación en la columna del agua no son favorables para esta comunidad (Zuta & Guillen, 1970; Ochoa & Gómez, 1981, 1988; Rojas de Mendiola, 1981).
+
+El fenómeno conocido como “La Niña”, se da cuando las temperaturas superficiales del agua de mar son más bajas de lo normal, como resultado se da una intensificación en el proceso de surgencia (Philander, 1992; Lukas & Webster, 1992).
+
+El presente trabajo tiene como objetivo analizar el fitoplancton, de acuerdo al tamaño, que se ve beneficiado en épocas cálidas y frías respecto al año 1988.
+
 
 ## Materiales y métodos
 
+Se utilizó los netCDF proporcionados en la carpeta Datos del repositorio C6118-UPCH, los cuales poseen datos de temperatura superficial del mar, salinidad, ph, fitoplancton (grande y pequeño), se requiere la instalación de paquetes rmarkdown, devtools, field, ncdf4, y kali para el completo desarrollo de graficas dentro del programa R.
 
 ## Resultados y discusión
 las gráficas - comparacion en meses calidos y frios para 1988
