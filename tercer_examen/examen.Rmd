@@ -21,15 +21,12 @@ El presente trabajo tiene como objetivo analizar el fitoplancton, de acuerdo al 
 Se utilizó los netCDF proporcionados en la carpeta Datos del repositorio C6118-UPCH, los cuales poseen datos de temperatura superficial del mar, salinidad, ph, fitoplancton (grande y pequeño), se requiere la instalación de paquetes rmarkdown, devtools, field, ncdf4, y kali para el completo desarrollo de graficas dentro del programa R.
 
 ## Resultados y discusión
-las gráficas - comparacion en meses calidos y frios para 1988
 
 ```{r include=FALSE}
 library(ncdf4)
 library(fields)
 library(kali)
-```
 
-```{r}
 nct = nc_open("datos/sst.nc4")
 sst = ncvar_get(nct, "to")
 lat = ncvar_get(nct, "latitude")
@@ -39,39 +36,88 @@ ncsphy = nc_open("datos/sphy.nc4")
 ncph = nc_open("datos/ph.nc4")
 nclphy = nc_open("datos/lphy.nc4")
 lphy = ncvar_get(nclphy, "intpp")
+sphy = ncvar_get(ncsphy, "intpp")
 
 ```
 
+De los datos,en la Grafica1, podemos observar que los valores promedios de la temperatura para el año 1988 tienden a ser frias, lo que corrobora la data y estudios realizados en las costas peruanas al definir que en los años 1988/89 sucedió un evento "La Niña", en la Grafica2 muestra la anomalia de SST de 1988 con repecto a los años evaluados desde 1959 - 2005, se observa que la anomalia es positiva a pesar de ser un año frio, esto nos indica que los promedios de Temperaruta superficial del mar de los años 1959 - 2005 es mucho menor al valor promedio del año 1988.
+
 ```{r}
+sst_tota = apply(sst[,,1:552], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #total
+sst_1988 = apply(sst[,,348:360], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+anom = sst_tota - sst_1988
+
+par(mfrow=c(1,2))
+image.map(lon, lat, sst_1988, main="Graf.1: SST para el año 1988")
+image.map(lon, lat, anom, main="Graf2: Anomalias 
+  de SST en el año 1988")
+```
+
+
+En las gráficas 3 y 4, que son para los meses cálidos (enero, febrero, marzo), y frios (julio, agosto, setiembre) respetivamente, se observa que la SST se intensifica desde los 10°S hacia el sur
+```{r}
+sst_JFM = apply(sst[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #calido
+sst_jas = apply(sst[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #frio
+
+par(mfrow=c(1,2))
+image.map(lon, lat, sst_JFM, main="Graf.3: SST para verano de 1988")
+image.map(lon, lat, sst_jas, main="Graf.4: SST para invierno de 1988")
+box()
+
+```
+
+
+
+```{r include=FALSE}
 #para obetner anomalias, necesitamos la media del año muestreado y restarle nuestros valores, en este caso epoca fria y calida en el año
 sst_prom = apply(sst[,,348:360], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
 sst_JFM = apply(sst[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
 anom_cal = sst_prom - sst_JFM
 image.map(lon, lat, anom_cal)# tenemos la anoamalia para los meses "calidos" de ese año
-```
 
-
-```{r}
-sst_JFM = apply(sst[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #calido
-image.map(lon, lat, sst_JFM)
-```
-
-```{r}
-sst_jas = apply(sst[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE) #frio
-image.map(lon, lat, sst_jas)
-```
-
-
-```{r}
 sst_prom = apply(sst[,,348:360], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
 sst_jas = apply(sst[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
 anom_frio = sst_prom - sst_jas
 image.map(lon, lat, anom_frio) # tenemos la anoamalia para los meses "frios" de ese año
 ```
 
+fitoplancton grande y peqeño en meses cálidos
+```{r}
+
+lphy_vera=apply(lphy[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+sphy_vera=apply(sphy[,,348:350], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+
+par(mfrow=c(1,2))
+image.map(lon, lat, lphy_vera, main="large phitoplankton")
+image.map(lon, lat, sphy_vera, main="small phitoplankton")
+
+```
+fitoplancton grande y peqeño en meses frios
+```{r}
+lphy_invr=apply(lphy[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+sphy_invr=apply(sphy[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
+
+par(mfrow=c(1,2))
+image.map(lon, lat, lphy_invr, main="large phitoplankton")
+image.map(lon, lat, sphy_invr, main="small phitoplankton")
+```
+
 
 
 ## Conclusiones
 
+Las sp de fitoplanton de menor tamaño predominan en epocas frias, esta pueden ser diatomeas pequeñas de crecimiento rapido (estrategia r) e aguas potencialmente productivas, como Chaetocerus sp., Skeletonema cotatum, entre otras
+
+
 ## Referencias
+•	-LUKAS, R., WEBSTER, P. 1992. Toga-Coare. Oceanus 35(4): 62-65 pp.  
+•	-OCHOA, N., TARAZONA, A., 2003. Small scale temporal variability in the phytoplankton of Independencia Bay, Pisco, Peru. Rev. Perú biol. v.10 n.1 Lima ene./jul. 2003.  
+•	-OCHOA, N., GOMEZ, O., 1988, Variaciones Espacio-Temporales del fitoplancton frente a Callao, Perú, e 1986. In: Salzwedel, H. y Landa, A. (Eds). Boletin Vol. Extraordinario Instituto del Mar del Perú. Recursos y dinámica del ecosistema de afloramiento Peruano. 1:51-59.  
+•	-OCHOA, N,. ROJAS DE MENDIOLA, B., GOMEZ, O., 1985, Identificación del Fenómeno "El Niño" a través de lo organismos fitoplanctonicos. Bol.Ins.del Mar. Vol.Extraordinario "El Niño" y su impacto en la Fauna Marina Ed. Arntz, w.; A, Tarazona, J.:23-31.  
+•	-OCHOA, N., GOMEZ, O., 1981, Variaciones del fitoplancton en el área de Chimbote durante 1977. Bol.Inst. del Mar del Perú. Vol.Extraordinario ICANE. Callao. Perú 119-128.  
+•	-PHILANDER, G. S., 1992, El Niño, Oceanus 35)(4): 56-61.  
+•	-VINOGRADOV, M., E., SHUSKINA, E.A., 1984, Succession of marine epipelagic communities. Mar. Ecol. Prog. Ser., 16:229-239.  
+•	-ZUTA, S., GUILLEN, O., 1970, Oceanografía de las aguas costeras del Perú. Bol. Inst. Mar del Perú. 2(5):161-234.  
+•	-ROJAS DE MENDIOLA, B., GOMEZ, O., OCHOA, N., 1985, Efectos del fenómeno "El Niño" 1982-1983 sobre fitoplancton de las costas peruanas. Simp.Int.Alf.O.Afr.Inst.Inv.Pesq. Barcelona 1:417-434. 
+
 
