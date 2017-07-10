@@ -1,5 +1,5 @@
 ---
-title: "Análisis del fitoplancton frente a Perú durante el año de 1988 (aun por editar)"
+title: "Análisis del fitoplancton frente a Perú durante el año de 1988"
 author: "Cesar Williams Cueto Torres"
 output: html_document
 ---
