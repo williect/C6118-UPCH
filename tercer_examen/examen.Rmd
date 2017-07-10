@@ -1,5 +1,5 @@
 ---
-title: "Análisis del fitoplancton frente a Perú durante el año de 1988 (aun por editar)"
+title: "Análisis del fitoplancton frente a Perú durante el año de 1988"
 author: "Cesar Williams Cueto Torres"
 output: html_document
 ---
@@ -81,6 +81,53 @@ anom_frio = sst_prom - sst_jas
 image.map(lon, lat, anom_frio) # tenemos la anoamalia para los meses "frios" de ese año
 ```
 
+Adicionalmente tenemos las comparaciones entre los primeros meses cálidos del año 1988
+```{r}
+year1988c=time[348:350] ## meses calidos
+
+meses=rep(1:3,length=length(year1988c))
+
+for(i in 1:3){
+   apply(sst[,,meses=(1:3)],MARGIN=c(1,2),
+         FUN=mean,na.rm=TRUE)}
+
+clim=array(dim=c(dim(sst)[1:2],3))
+
+for(i in 1:3){
+   clim[,,i]=apply(sst[,,meses=i],MARGIN=c(1,2),
+                   FUN=mean,na.rm=TRUE)
+ }
+ par(mfrow=c(1,3),mar=c(4,4,1,1))
+ for(i in 1:3)
+    image.map(lon,lat,clim[,,i])
+ 
+
+```
+
+imagen de los meses frios (julio, agosto, setiembre) para el año 1988
+
+```{r}
+year1988f=time[354:356] ## meses frios
+
+meses=rep(7:9,length=length(year1988f))
+
+for(i in 7:9){
+   apply(sst[,,meses=(7:9)],MARGIN=c(1,2),
+         FUN=mean,na.rm=TRUE)}
+
+clim=array(dim=c(dim(sst)[1:2],9))
+
+for(i in 7:9){
+   clim[,,i]=apply(sst[,,meses=i],MARGIN=c(1,2),
+                   FUN=mean,na.rm=TRUE)
+ }
+ par(mfrow=c(1,3),mar=c(4,4,1,1))
+ for(i in 7:9)
+    image.map(lon,lat,clim[,,i])
+```
+
+
+
 fitoplancton grande y peqeño en meses cálidos
 ```{r}
 
@@ -92,6 +139,7 @@ image.map(lon, lat, lphy_vera, main="large phitoplankton")
 image.map(lon, lat, sphy_vera, main="small phitoplankton")
 
 ```
+
 fitoplancton grande y peqeño en meses frios
 ```{r}
 lphy_invr=apply(lphy[,,354:356], MARGIN = c(1,2), FUN = mean, na.rm = TRUE)
@@ -101,7 +149,6 @@ par(mfrow=c(1,2))
 image.map(lon, lat, lphy_invr, main="large phitoplankton")
 image.map(lon, lat, sphy_invr, main="small phitoplankton")
 ```
-
 
 
 ## Conclusiones
