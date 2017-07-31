@@ -172,7 +172,7 @@ par(mar=c(5, 4, 4, 6) + 0.1)
 plot(meses88, promedio, pch=16, axes=FALSE, xlab="", ylab="", 
    type="b",col="black", main="promedios mensuales entre fitoplancton pequeño y temperatura 
    durante el año 1988")
-axis(2,col="black",las=1)  ## las=1 makes horizontal labels
+axis(2,col="black",las=1)  ## las=1 tenga forma Horizontal
 mtext("temperatura promedio",side=2,line=2.5)
 box()
 
@@ -218,7 +218,7 @@ par(mar=c(5, 4, 4, 6) + 0.1)
 plot(meses88, promedio, pch=16, axes=FALSE, xlab="", ylab="", 
    type="b",col="black", main="promedios mensuales entre fitoplancton grande y temperatura 
    durante el año 1988")
-axis(2,col="black",las=1)  ## las=1 makes horizontal labels
+axis(2,col="black",las=1)  ## las=1 mtome forma horizontal
 mtext("temperatura promedio",side=2,line=2.5)
 box()
 
